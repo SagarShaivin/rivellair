@@ -1,0 +1,1526 @@
+/* ==========================================================================
+   RIVELLAIR — L'Essence du Soin | Luxury Fragrance & Earthy Care Rituals
+   Custom Vanilla CSS Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design Tokens & Variables
+   -------------------------------------------------------------------------- */
+:root {
+  /* Earthy Luxury Color Palette */
+  --color-linen: #FAF8F5;
+  --color-parchment: #F4EFE6;
+  --color-sand: #EAE3D5;
+  --color-sand-dark: #D8CDBC;
+  
+  --color-terracotta: #8C3E2B;
+  --color-terracotta-dark: #6D2E1F;
+  --color-terracotta-light: #B85F49;
+  --color-terracotta-soft: rgba(140, 62, 43, 0.08);
+
+  --color-olive: #4A5540;
+  --color-olive-dark: #373F2F;
+  --color-olive-soft: rgba(74, 85, 64, 0.08);
+
+  --color-amber: #C6893F;
+  --color-amber-gold: #DE9F4D;
+  --color-amber-light: #F7EAD7;
+
+  --color-espresso: #1A1715;
+  --color-espresso-subtle: #2C2622;
+  --color-charcoal: #3D3733;
+  --color-stone: #6B635B;
+  --color-stone-light: #9B9187;
+
+  --color-white: #FFFFFF;
+  --color-white-glass: rgba(250, 248, 245, 0.94);
+  --color-border: rgba(140, 62, 43, 0.14);
+  --color-border-subtle: rgba(26, 23, 21, 0.08);
+
+  /* Typography */
+  --font-serif: 'Cinzel', 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-serif-sub: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-script: 'Italianno', 'Playfair Display', cursive, serif;
+
+  /* Shadows & Elevations */
+  --shadow-sm: 0 2px 8px rgba(26, 23, 21, 0.04);
+  --shadow-md: 0 8px 24px rgba(26, 23, 21, 0.07);
+  --shadow-lg: 0 16px 40px rgba(26, 23, 21, 0.1);
+  --shadow-xl: 0 24px 60px rgba(26, 23, 21, 0.14);
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-lux: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Radius */
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Layout */
+  --container-max: 1280px;
+  --nav-height: 84px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Global Styles
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--color-linen);
+  color: var(--color-espresso);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  background-color: var(--color-linen);
+  color: var(--color-espresso);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle Organic Linen Texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(140, 62, 43, 0.02) 1px, transparent 0);
+  background-size: 24px 24px;
+  z-index: 999;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  transition: all var(--transition-fast);
+}
+
+ul {
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography & Utility Classes
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-espresso);
+  line-height: 1.25;
+}
+
+.script-accent {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--color-terracotta);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.sub-heading {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sub-heading::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-terracotta);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.section-spacing {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Luxury Button System */
+.btn-luxury {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 28px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background-color: var(--color-terracotta);
+  color: var(--color-white);
+  box-shadow: 0 4px 16px rgba(140, 62, 43, 0.22);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-terracotta-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(140, 62, 43, 0.32);
+}
+
+.btn-outline {
+  border: 1px solid var(--color-terracotta);
+  color: var(--color-terracotta);
+  background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-terracotta);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 8px 18px;
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+}
+
+/* --------------------------------------------------------------------------
+   4. Main Navigation Bar (Clean Luxury Spacing)
+   -------------------------------------------------------------------------- */
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-white-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
+  transition: all var(--transition-smooth);
+}
+
+.main-header.scrolled {
+  box-shadow: var(--shadow-sm);
+  background-color: rgba(250, 248, 245, 0.98);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  gap: 36px;
+}
+
+/* Logo Design with Ample Right Margin */
+.brand-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+  margin-right: 48px;
+  flex-shrink: 0;
+}
+
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--color-espresso);
+  line-height: 1;
+}
+
+.brand-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  color: var(--color-terracotta);
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* Navigation Links: Centered with Generous Breathing Room */
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-grow: 1;
+}
+
+.nav-link {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+  font-weight: 500;
+  position: relative;
+  padding: 6px 0;
+  white-space: nowrap;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-terracotta);
+  transition: width var(--transition-fast);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-espresso);
+  background: transparent;
+  position: relative;
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background-color: var(--color-terracotta-soft);
+  color: var(--color-terracotta);
+  border-color: var(--color-border);
+}
+
+.cart-counter {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: var(--color-terracotta);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-toggle {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero Section (Earthy Cinematic)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  padding: 70px 0 90px;
+  background: linear-gradient(180deg, var(--color-linen) 0%, var(--color-parchment) 100%);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-pretitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: var(--color-espresso);
+  margin-bottom: 22px;
+}
+
+.hero-title span.italic {
+  font-family: var(--font-serif-sub);
+  font-style: italic;
+  color: var(--color-terracotta);
+  font-weight: 400;
+}
+
+.hero-manifesto {
+  font-size: 1.05rem;
+  color: var(--color-charcoal);
+  line-height: 1.75;
+  margin-bottom: 32px;
+  max-width: 520px;
+  border-left: 2px solid var(--color-terracotta);
+  padding-left: 18px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.hero-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.hero-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--color-stone);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.hero-badge-item svg {
+  color: var(--color-terracotta);
+}
+
+/* Hero Visual Showcase */
+.hero-visual-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  background-color: var(--color-parchment);
+  border: 1px solid rgba(140, 62, 43, 0.2);
+}
+
+.hero-visual-card img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-visual-card:hover img {
+  transform: scale(1.03);
+}
+
+/* Floating Hotspot Tags */
+.hotspot-tag {
+  position: absolute;
+  background-color: rgba(250, 248, 245, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(140, 62, 43, 0.25);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-espresso);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hotspot-tag:hover {
+  background-color: var(--color-terracotta);
+  color: #fff;
+  border-color: var(--color-terracotta);
+}
+
+.hotspot-tag.top-right {
+  top: 24px;
+  right: 24px;
+}
+
+.hotspot-tag.bottom-left {
+  bottom: 24px;
+  left: 24px;
+}
+
+.hotspot-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-amber-gold);
+}
+
+/* --------------------------------------------------------------------------
+   6. Brand Essence & Triad Pillars (Hair, Skin, Scent)
+   -------------------------------------------------------------------------- */
+.brand-pillars-section {
+  background-color: var(--color-linen);
+  border-bottom: 1px solid var(--color-border);
+  padding: 70px 0;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.pillar-card {
+  background: var(--color-parchment);
+  border: 1px solid var(--color-border);
+  padding: 36px 30px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-smooth);
+  position: relative;
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-terracotta);
+}
+
+.pillar-num {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: var(--color-terracotta);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.pillar-title {
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+  color: var(--color-espresso);
+}
+
+.pillar-text {
+  font-size: 0.9rem;
+  color: var(--color-stone);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   7. Main Focus Spotlight: Fragrance Debut
+   -------------------------------------------------------------------------- */
+.perfumes-spotlight {
+  padding: 100px 0;
+  background-color: var(--color-parchment);
+  position: relative;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-header {
+  max-width: 680px;
+  margin: 0 auto 50px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 1rem;
+  color: var(--color-stone);
+  line-height: 1.7;
+}
+
+/* Perfume & Product Cards */
+.perfumes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.perfume-card {
+  background: var(--color-linen);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.perfume-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-terracotta-light);
+}
+
+.product-img-wrap {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-sand);
+  aspect-ratio: 4 / 3;
+}
+
+.product-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-lux);
+}
+
+.perfume-card:hover .product-img-wrap img {
+  transform: scale(1.05);
+}
+
+.card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(26, 23, 21, 0.85);
+  backdrop-filter: blur(4px);
+  color: var(--color-amber-light);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  z-index: 2;
+}
+
+.product-quick-actions {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  transition: bottom var(--transition-smooth);
+  z-index: 3;
+}
+
+.perfume-card:hover .product-quick-actions {
+  bottom: 0;
+}
+
+.quick-view-btn {
+  background: var(--color-white);
+  color: var(--color-espresso);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.quick-view-btn:hover {
+  background: var(--color-terracotta);
+  color: #fff;
+}
+
+.product-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-concentration {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.product-name {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.product-tagline {
+  font-size: 0.85rem;
+  color: var(--color-stone);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.product-footer {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-price {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-espresso);
+}
+
+.product-volume {
+  font-size: 0.72rem;
+  color: var(--color-stone-light);
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   8. Brand Story Section (Faithful to Screenshot)
+   -------------------------------------------------------------------------- */
+.brand-story-section {
+  padding: 110px 0;
+  background-color: var(--color-linen);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.story-visual-wrap {
+  position: relative;
+}
+
+.story-main-img {
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+}
+
+.story-quote-card {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  background-color: var(--color-parchment);
+  border: 1px solid var(--color-terracotta);
+  padding: 24px;
+  border-radius: var(--radius-xs);
+  max-width: 320px;
+  box-shadow: var(--shadow-md);
+}
+
+.story-quote-text {
+  font-family: var(--font-serif-sub);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-terracotta-dark);
+  line-height: 1.45;
+}
+
+.story-quote-author {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+  font-weight: 600;
+}
+
+.story-content .story-lead {
+  font-size: 1.25rem;
+  font-family: var(--font-serif-sub);
+  color: var(--color-terracotta);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.story-body {
+  font-size: 0.95rem;
+  color: var(--color-charcoal);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.story-commitments-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.commitment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.commitment-icon {
+  color: var(--color-terracotta);
+  margin-top: 2px;
+}
+
+.commitment-item strong {
+  font-size: 0.85rem;
+  color: var(--color-espresso);
+  display: block;
+}
+
+.commitment-item p {
+  font-size: 0.75rem;
+  color: var(--color-stone);
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   9. Official Product Catalog Grid (From Catalog)
+   -------------------------------------------------------------------------- */
+.catalog-section {
+  padding: 110px 0;
+  background-color: var(--color-parchment);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.catalog-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.tab-btn {
+  padding: 10px 22px;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+  background: var(--color-linen);
+  color: var(--color-charcoal);
+  transition: all var(--transition-fast);
+}
+
+.tab-btn:hover {
+  border-color: var(--color-terracotta);
+  color: var(--color-terracotta);
+}
+
+.tab-btn.active {
+  background: var(--color-terracotta);
+  color: #fff;
+  border-color: var(--color-terracotta);
+  box-shadow: 0 4px 12px rgba(140, 62, 43, 0.2);
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 30px;
+}
+
+/* Flipbook Banner Card */
+.flipbook-feature-card {
+  background: var(--color-linen);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 40px;
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 30px;
+  box-shadow: var(--shadow-sm);
+}
+
+.flipbook-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.flipbook-info p {
+  color: var(--color-stone);
+  font-size: 0.9rem;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.flipbook-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   10. Botanical Alchemy / Raw Ingredients Grid
+   -------------------------------------------------------------------------- */
+.ingredients-section {
+  padding: 100px 0;
+  background-color: var(--color-linen);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.ingredient-card {
+  background: var(--color-parchment);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 28px;
+  transition: all var(--transition-smooth);
+}
+
+.ingredient-card:hover {
+  border-color: var(--color-terracotta);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.ingredient-category {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ingredient-title {
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+}
+
+.ingredient-origin {
+  font-size: 0.8rem;
+  color: var(--color-terracotta);
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.ingredient-scent {
+  font-size: 0.82rem;
+  color: var(--color-stone);
+  margin-bottom: 8px;
+}
+
+.ingredient-benefit {
+  font-size: 0.85rem;
+  color: var(--color-charcoal);
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   11. Reviews & Trust
+   -------------------------------------------------------------------------- */
+.reviews-section {
+  padding: 90px 0;
+  background-color: var(--color-parchment);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.review-card {
+  background: var(--color-linen);
+  border: 1px solid var(--color-border);
+  padding: 36px 30px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.review-stars {
+  color: var(--color-amber);
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+
+.review-quote {
+  font-family: var(--font-serif-sub);
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--color-espresso);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.review-author-meta {
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 16px;
+}
+
+.review-author-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-espresso);
+}
+
+.review-author-role {
+  font-size: 0.75rem;
+  color: var(--color-stone);
+}
+
+.review-product-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  background-color: var(--color-terracotta-soft);
+  color: var(--color-terracotta);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   12. Newsletter
+   -------------------------------------------------------------------------- */
+.newsletter-section {
+  padding: 90px 0;
+  background: var(--color-espresso);
+  color: var(--color-linen);
+  text-align: center;
+}
+
+.newsletter-box {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsletter-title {
+  color: var(--color-linen);
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.newsletter-desc {
+  color: var(--color-sand-dark);
+  font-size: 0.95rem;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.newsletter-input {
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 14px 18px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  border-radius: var(--radius-xs);
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--color-amber);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   13. Footer
+   -------------------------------------------------------------------------- */
+.main-footer {
+  background-color: #141210;
+  color: var(--color-sand-dark);
+  padding: 80px 0 30px;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.footer-brand-title {
+  color: #fff;
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+  letter-spacing: 0.12em;
+}
+
+.footer-brand-tagline {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 18px;
+}
+
+.footer-brand-desc {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--color-stone-light);
+  max-width: 320px;
+}
+
+.footer-col h4 {
+  color: #fff;
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: var(--color-sand-dark);
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-amber);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.75rem;
+  color: var(--color-stone);
+}
+
+/* --------------------------------------------------------------------------
+   14. Shopping Bag Drawer
+   -------------------------------------------------------------------------- */
+.cart-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 18, 16, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-smooth);
+}
+
+.cart-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -450px;
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  background: var(--color-linen);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  transition: right var(--transition-lux);
+}
+
+.cart-drawer.active {
+  right: 0;
+}
+
+.cart-header {
+  padding: 24px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-header h3 {
+  font-size: 1.25rem;
+}
+
+.close-drawer-btn {
+  font-size: 1.4rem;
+  color: var(--color-stone);
+  padding: 4px;
+}
+
+.close-drawer-btn:hover {
+  color: var(--color-terracotta);
+}
+
+.cart-items-wrap {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.cart-item-img {
+  width: 70px;
+  height: 70px;
+  border-radius: var(--radius-xs);
+  object-fit: cover;
+  background: var(--color-sand);
+}
+
+.cart-item-info h4 {
+  font-size: 0.92rem;
+  margin-bottom: 4px;
+}
+
+.cart-item-meta {
+  font-size: 0.75rem;
+  color: var(--color-stone);
+  margin-bottom: 8px;
+}
+
+.cart-qty-ctrl {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  background: #fff;
+}
+
+.qty-btn {
+  padding: 2px 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.qty-val {
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+.cart-item-price {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: right;
+}
+
+.cart-item-remove {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--color-stone-light);
+  margin-top: 6px;
+}
+
+.cart-item-remove:hover {
+  color: var(--color-terracotta);
+}
+
+.cart-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-stone);
+}
+
+.cart-footer {
+  padding: 24px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-parchment);
+}
+
+.cart-subtotal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.cart-subtotal-row strong {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+}
+
+/* --------------------------------------------------------------------------
+   15. Modals
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 16, 14, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-smooth);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-card {
+  background: var(--color-linen);
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-border);
+  position: relative;
+  transform: translateY(20px);
+  transition: transform var(--transition-smooth);
+}
+
+.modal-overlay.active .modal-card {
+  transform: translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-parchment);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-espresso);
+  font-size: 1.2rem;
+  z-index: 10;
+  box-shadow: var(--shadow-sm);
+}
+
+.modal-close-btn:hover {
+  background: var(--color-terracotta);
+  color: #fff;
+}
+
+.quick-view-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.quick-view-media {
+  background: var(--color-sand);
+}
+
+.quick-view-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 420px;
+}
+
+.quick-view-details {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toast */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--color-espresso);
+  color: var(--color-linen);
+  border-left: 3px solid var(--color-terracotta);
+  padding: 12px 20px;
+  border-radius: var(--radius-xs);
+  font-size: 0.82rem;
+  box-shadow: var(--shadow-lg);
+  pointer-events: auto;
+  animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   16. Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 72px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: var(--color-linen);
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .mobile-toggle {
+    display: flex;
+    font-size: 1.4rem;
+  }
+
+  .flipbook-feature-card {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-view-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
